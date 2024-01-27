@@ -4,7 +4,8 @@ import CategoryList from './components/CategoryList/CategoryList'
 
 export default function App() {
   return (
-    <div className='wrapper bg-faded-dark'>
+    // bg-faded-dark
+    <div className='wrapper'>
       <Header />
       <CategoryList />
     </div>
