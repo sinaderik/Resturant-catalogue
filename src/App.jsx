@@ -6,7 +6,7 @@ import Loading from './components/Loading/Loading'
 import axios from "../src/axios"
 import SearchBar from './components/SearchBar/SearchBar'
 import notFound from '../src/assets/images/404.png'
-
+import "./App.css"
 
 export default function App() {
   const [loading, setLoading] = useState(false)
@@ -41,7 +41,7 @@ export default function App() {
           <div className='alert alert-warning text-center'>
             برای کلید واژه فوق هیچ آیتمی یافت نشد !
           </div>
-          <img className='mx-auto d-block mt-5' src={notFound} alt="404-image" />
+          <img className='fade-in-horiz mx-auto d-block mt-5' src={notFound} alt="404-image" />
         </>
       )
     }

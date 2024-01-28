@@ -1,4 +1,6 @@
-
+.card{
+    opacity: 0;
+}
 .card__placeholder  {
     animation-duration: 1.25s;
     animation-fill-mode: forwards;
@@ -11,6 +13,7 @@
     height: 280px;
     position: relative;
 }
+
 
 @keyframes placeHolderShimmer{
     0%{
