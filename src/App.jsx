@@ -11,14 +11,15 @@ export default function App() {
   const [fastFoodItems, setFastFoodItems] = useState([])
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, [])
 
   async function fetchData(categoryId = null) {
     setLoading(true)
-    const response = await axios.get(`/FastFood/list ${categoryId ? "?categoryId=" + categoryId : ""}`)
+    const response = await axios.get(`/FastFood/list${categoryId ? "?categoryId=" + categoryId : ""}`)
+    // const response = await axios.get("/FastFood/list?categoryId=4")
     setLoading(false)
-    console.log(response.data)
+    // console.log(response.data)
     setFastFoodItems(response.data)
   }
 
@@ -32,7 +33,7 @@ export default function App() {
   return (
     <div className='wrapper'>
       <Header />
-      <CategoryList />
+      <CategoryList fetchData={fetchData} />
       <div className='container mt-4'>
         {renderContent()}
       </div>

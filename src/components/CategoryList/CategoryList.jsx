@@ -4,9 +4,10 @@ import axios from '../../axios'
 import Loading from '../Loading/Loading'
 
 
-export default function CategoryList() {
+export default function CategoryList({fetchData}) {
     const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState([])
+    const [categoryId,setCategoryId]=useState(null)
 
     useEffect(() => {
         fetchCategories()
@@ -26,11 +27,11 @@ export default function CategoryList() {
         return (
             <ul className='nav'>
                 <li className='nav-item'>
-                    <a className='nav-link' href="#">همه فست فود ها</a>
+                    <a onClick={()=>fetchData()} className='nav-link' href="#">همه فست فود ها</a>
                 </li>
                 {categories.map(category => (
                     <li className='nav-item' key={category.id}>
-                        <a className='nav-link' href="#">{category.name}</a>
+                        <a onClick={()=>fetchData(category.id)} className='nav-link' href="#">{category.name}</a>
                     </li>
                 ))}
             </ul>

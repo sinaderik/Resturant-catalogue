@@ -10,7 +10,7 @@ export default function FastFoodItem({ name, price, ingredients, imageUrl }) {
                 قیمت : {price.toLocaleString()} تومان
             </span>
             <div className='card__placeholder'>
-                <img className='card-img-top' src={imageUrl} alt="fastFood-image" />
+                <img className='card-img-top h-100' src={imageUrl} alt="fastFood-image" />
             </div>
             <div className='card-body text-center pt-3 pb-4 d-flex flex-column'>
                 <h5 className='mb-2'>{name}</h5>
