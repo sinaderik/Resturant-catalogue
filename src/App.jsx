@@ -4,6 +4,8 @@ import CategoryList from './components/CategoryList/CategoryList'
 import FastFoodList from './components/FastFoodList/FastFoodList'
 import Loading from './components/Loading/Loading'
 import axios from "../src/axios"
+import SearchBar from './components/SearchBar/SearchBar'
+import notFound from '../src/assets/images/404.png'
 
 
 export default function App() {
@@ -17,9 +19,14 @@ export default function App() {
   async function fetchData(categoryId = null) {
     setLoading(true)
     const response = await axios.get(`/FastFood/list${categoryId ? "?categoryId=" + categoryId : ""}`)
-    // const response = await axios.get("/FastFood/list?categoryId=4")
     setLoading(false)
-    // console.log(response.data)
+    setFastFoodItems(response.data)
+  }
+
+  async function searchItems(term) {
+    setLoading(true)
+    const response = await axios.get(`/FastFood/search${term ? "?term=" + term : ""}`)
+    setLoading(false)
     setFastFoodItems(response.data)
   }
 
@@ -27,13 +34,27 @@ export default function App() {
     if (loading) {
       return <Loading />
     }
-    return <FastFoodList fastFoodItems={fastFoodItems}/>
+    
+    if(fastFoodItems.length===0){
+      return(
+        <>
+          <div className='alert alert-warning text-center'>
+            برای کلید واژه فوق هیچ آیتمی یافت نشد !
+          </div>
+          <img className='mx-auto d-block mt-5' src={notFound} alt="404-image" />
+        </>
+      )
+    }
+
+    return <FastFoodList fastFoodItems={fastFoodItems} />
   }
 
   return (
     <div className='wrapper'>
       <Header />
-      <CategoryList fetchData={fetchData} />
+      <CategoryList fetchData={fetchData}>
+        <SearchBar searchItems={searchItems} />
+      </CategoryList>
       <div className='container mt-4'>
         {renderContent()}
       </div>

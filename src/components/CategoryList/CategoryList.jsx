@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 
 
-export default function CategoryList({fetchData}) {
+export default function CategoryList({fetchData,children}) {
     const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState([])
   
@@ -38,7 +38,7 @@ export default function CategoryList({fetchData}) {
                     </li>
                 ))}
             </ul>
-            <SearchBar />
+            {children}
           </div>
         )
     }

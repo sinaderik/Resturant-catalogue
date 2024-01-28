@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 
 
-export default function SearchBar() {
+export default function SearchBar({searchItems}) {
 
     const [value, setValue] = useState("")
 
     function onSubmit(e){
         e.preventDefault();
-        console.log(value)
+        searchItems(value)
     }
 
     return (
-        <form onSubmit={onSubmit} className='search d-flex flex-fill align-items-center'>
+        <form onSubmit={e=>onSubmit(e)} className='search d-flex flex-fill align-items-center'>
             <div className='input-group'>
                 <input
                     className='form-control rounded-end pe-5 border-success'
