@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading'
 export default function CategoryList({fetchData}) {
     const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState([])
-    const [categoryId,setCategoryId]=useState(null)
+  
 
     useEffect(() => {
         fetchCategories()
