@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import axios from '../../axios'
 import Loading from '../Loading/Loading'
+import SearchBar from '../SearchBar/SearchBar'
+
 
 
 export default function CategoryList({fetchData}) {
@@ -25,7 +27,8 @@ export default function CategoryList({fetchData}) {
         }
 
         return (
-            <ul className='nav'>
+          <div className='d-flex align-items-center justify-content-between w-100 ps-3 gap-5'>
+              <ul className='nav'>
                 <li className='nav-item'>
                     <a onClick={()=>fetchData()} className='nav-link' href="#">همه فست فود ها</a>
                 </li>
@@ -35,6 +38,8 @@ export default function CategoryList({fetchData}) {
                     </li>
                 ))}
             </ul>
+            <SearchBar />
+          </div>
         )
     }
 
