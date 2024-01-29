@@ -1,25 +1,16 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import axios from '../../axios'
+import React from 'react'
+import { useAxios } from '../../useAxios'
 import Loading from '../Loading/Loading'
 import SearchBar from '../SearchBar/SearchBar'
 
 
 
-export default function CategoryList({fetchData,children}) {
-    const [loading, setLoading] = useState(true)
-    const [categories, setCategories] = useState([])
-  
-
-    useEffect(() => {
-        fetchCategories()
-    }, [])
-
-    async function fetchCategories() {
-        const response = await axios.get("/FoodCategory/categories")
-        setCategories(response.data);
-        setLoading(false);
-    }
+export default function CategoryList({ fetchData, children }) {
+    
+    const [categories, , loading] = useAxios({
+        method: "GET",
+        url: "/FoodCategory/categories"
+    })
 
     function RenderContent() {
         if (loading) {
@@ -27,19 +18,19 @@ export default function CategoryList({fetchData,children}) {
         }
 
         return (
-          <div className='d-flex align-items-center justify-content-between w-100 ps-3 gap-5'>
-              <ul className='nav'>
-                <li className='nav-item'>
-                    <a onClick={()=>fetchData()} className='nav-link' href="#">همه فست فود ها</a>
-                </li>
-                {categories.map(category => (
-                    <li className='nav-item' key={category.id}>
-                        <a onClick={()=>fetchData(category.id)} className='nav-link' href="#">{category.name}</a>
+            <div className='d-flex align-items-center justify-content-between w-100 ps-3 gap-5'>
+                <ul className='nav'>
+                    <li className='nav-item'>
+                        <a onClick={() => fetchData()} className='nav-link' href="#">همه فست فود ها</a>
                     </li>
-                ))}
-            </ul>
-            {children}
-          </div>
+                    {categories.map(category => (
+                        <li className='nav-item' key={category.id}>
+                            <a onClick={() => fetchData(category.id)} className='nav-link' href="#">{category.name}</a>
+                        </li>
+                    ))}
+                </ul>
+                {children}
+            </div>
         )
     }
 
